@@ -2,17 +2,20 @@
 
 namespace App\Console;
 
+use App\Console\Commands\SendGamesWithValues;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     */
+    protected $commands = [
+        SendGamesWithValues::class
+    ];
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('app:send-games-with-values')
+        ->timezone('America/Sao_Paulo')
+        ->at('18:00');
     }
 
     /**
