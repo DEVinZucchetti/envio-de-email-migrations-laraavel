@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\SendEmailWithGames;
 use App\Models\Product;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class SendGamesWithValues extends Command
 {
@@ -32,6 +34,7 @@ class SendGamesWithValues extends Command
         ->whereBetween('price',[20 , 100])
         ->get();
 
-
+        Mail::to('julioluzlaindorf@gmail.com', 'Julio Laindorf')
+        ->send(new SendEmailWithGames($products));
     }
 }
