@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
     ];
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:send-email-with-games-to-users')
+        $schedule->command('app:send-games-with-values')
         ->timezone('America/Sao_Paulo')
-        ->at('18:00');
+        ->at('22:17');
     }
 
     /**
