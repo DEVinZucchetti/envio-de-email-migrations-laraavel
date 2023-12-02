@@ -3,8 +3,10 @@
 namespace App\Mail;
 
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -48,6 +50,13 @@ class SendEmailWithGames extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+
+        $pdf = Pdf::loadView('pdfs.ListWithGamesPdf', [ 'games' => $this->games]);
+
+        return [
+            Attachment::fromData(fn () => $pdf->output())
+            ->as('sugestoes_jogos.pdf')
+            ->withMime('application/pdf')
+        ];
     }
 }
