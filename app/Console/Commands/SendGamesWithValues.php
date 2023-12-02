@@ -29,7 +29,7 @@ class SendGamesWithValues extends Command
     public function handle()
     {
         $products = Product::query()
-        ->inRandonOrder()
+        ->inRandomOrder()
         ->take(10)
         ->whereBetween('price',[20 , 100])
         ->get();

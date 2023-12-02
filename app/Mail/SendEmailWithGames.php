@@ -37,7 +37,7 @@ class SendEmailWithGames extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: 'emails.listWithGamesAndValuesTemplate',
+            html: 'emails.listWithGamesTemplate',
         );
     }
 
