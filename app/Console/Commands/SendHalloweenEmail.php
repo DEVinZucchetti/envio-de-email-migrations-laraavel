@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\halloweenGamesEmail;
 use App\Models\Product;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SendHalloweenEmail extends Command
 {
@@ -37,8 +39,14 @@ class SendHalloweenEmail extends Command
             return $product->price >= 30 && $product->price <= 300 &&
                 $product->avaliations()->where('recommended', true)->count() >= 5;
         });
-        foreach ($searchProducts as $product) {
-            Log::info("Preço: {$product->price}, Marcador: {$product->marker->name}, Nome do Jogo: {$product->name}");
-        }
+        Mail::to('matheus_goncalves16@estudante.sesisenai.org.br', 'Matheus')->send(new halloweenGamesEmail($searchProducts));
+        // foreach ($searchProducts as $product) {
+        //     Log::info([
+        //         'Jogo' => $product->name,
+        //         'cover' => $product->cover,
+        //         'Preço' => $product->price,
+        //         'Descrição' => $product->description
+        //     ]);
+        // }
     }
 }
