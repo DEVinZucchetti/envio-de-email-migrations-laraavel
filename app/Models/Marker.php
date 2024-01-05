@@ -10,4 +10,8 @@ class Marker extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'color'];
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
