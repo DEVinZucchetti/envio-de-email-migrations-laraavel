@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Jogos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .game-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .game-item {
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .game-item:hover {
+            transform: scale(1.05);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+        .game-info {
+            padding: 15px;
+            text-align: left;
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #6c757d;
+            margin: 0;
+        }
+        strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Jogos com valores especiais</h1>
+
+    <ul class="game-list">
+        @foreach($game as $game)
+            <li class="game-item">
+                <div class="game-info">
+                    <h2>{{ $game->product_name }}</h2>
+                    <p><strong>Preço:</strong> ${{ $game->price }}</p>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+
+</body>
+</html>
